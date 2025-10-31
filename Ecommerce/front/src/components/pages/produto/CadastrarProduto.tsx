@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Produto from "../../../models/Produto";
+import axios from "axios";
 
 function CadastrarProduto() {
   const [nome, setNome] = useState("");
@@ -16,28 +17,14 @@ function CadastrarProduto() {
     //Biblioteca AXIOS
     try {
       const produto: Produto = {
-        nome: nome,
-        descricao: descricao,
-        preco: preco,
-        quantidade: quantidade,
+        nome, descricao, preco, quantidade,
       };
-
-      const resposta = await fetch(
-        "http://localhost:5011/api/produto/cadastrar",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(produto),
-        }
-      );
-      if(!resposta.ok){
-        throw new Error("Erro ao cadastrar o protudo: " + resposta.statusText);
+      const resposta = await axios.post("http://localhost:5011/api/produto/cadastrar", produto);            
+      console.log(await resposta.data);
+    } catch (error : any) {
+      if(error.status === 409){
+        console.log("Esse produto já foi cadastrado!");
       }
-      console.log(await resposta.json());
-    } catch (error) {
-      console.log(error)
     }
   }
 
