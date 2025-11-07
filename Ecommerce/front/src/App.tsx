@@ -4,6 +4,9 @@ import CadastrarProduto from "./components/pages/produto/CadastrarProduto";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+//Instalar biblioteca na aplicação
+//npm i nome_biblioteca @types/nome_biblioteca
+
 //Componentes
 // - HTML, CSS e JS ou TS
 function App() {

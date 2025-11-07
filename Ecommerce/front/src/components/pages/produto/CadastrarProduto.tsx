@@ -3,6 +3,7 @@ import Produto from "../../../models/Produto";
 import axios from "axios";
 
 function CadastrarProduto() {
+  //Estados
   const [nome, setNome] = useState("");
   const [descricao, setDescricao] = useState("");
   const [quantidade, setQuantidade] = useState(0);
@@ -28,16 +29,13 @@ function CadastrarProduto() {
     }
   }
 
-  function escreverNome(e: any) {
-    setNome(e.target.value);
-  }
   return (
     <div>
       <h1>Cadastrar Produto</h1>
       <form onSubmit={enviarProduto}>
         <div>
           <label>Nome:</label>
-          <input onChange={escreverNome} type="text" />
+          <input onChange={(e : any) => setNome(e.target.value)} type="text" />
         </div>
         <div>
           <label>Descrição:</label>
